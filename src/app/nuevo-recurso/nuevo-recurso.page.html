@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Nuevo Recurso</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre recurso:</ion-label>
+      <ion-input type="text" name="nombre" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Usuario:</ion-label>
+      <ion-input type="text" name="usuario" [(ngModel)]="usuario"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña:</ion-label>
+      <ion-input type="text" name="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Rol</ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="rol" name="rol">
+        <ion-select-option *ngFor="let rol of rolesArray" value="{{rol._id}}"
+          >{{rol.nombre_rol}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-button
+          type="button"
+          color="primary"
+          expand="block"
+          size="medium"
+          (click)="validarCampos()"
+          >Registrar</ion-button
+        >
+      </ion-label>
+    </ion-item>
+  </form>
+</ion-content>

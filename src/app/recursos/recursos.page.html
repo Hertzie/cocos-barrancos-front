@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Recursos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-item>Nota: Los recursos en rojo están dados de baja</ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header><strong>Lista de recursos</strong></ion-list-header>
+    <ion-item-sliding *ngFor="let recurso of recursos">
+      <ion-item color="{{recurso.opc_activo == 0 ? 'danger' : ''}}">
+        <ion-label>{{recurso.nombre_recurso}}</ion-label>
+        <ion-note slot="end" color="primary"
+          >{{recurso.rol.nombre_rol}}</ion-note
+        >
+      </ion-item>
+
+      <ion-item-options
+        side="start"
+        *ngIf="recurso.rol.nombre_rol != 'Administrador'"
+      >
+        <ion-item-option
+          color="secondary"
+          (click)="presentarEditarRecursoPrompt(recurso)"
+          >Editar</ion-item-option
+        >
+      </ion-item-options>
+
+      <ion-item-options
+        side="end"
+        *ngIf="recurso.rol.nombre_rol != 'Administrador' && recurso.opc_activo == 1"
+      >
+        <ion-item-option color="danger" (click)="presentarBajaRecurso(recurso)"
+          >Baja</ion-item-option
+        >
+      </ion-item-options>
+
+      <ion-item-options
+        side="end"
+        *ngIf="recurso.rol.nombre_rol != 'Administrador' && recurso.opc_activo == 0"
+      >
+        <ion-item-option
+          color="secondary"
+          (click)="presentarReactivarRecurso(recurso)"
+          >Reactivar</ion-item-option
+        >
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary" (click)="presentarNuevoRecursoModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

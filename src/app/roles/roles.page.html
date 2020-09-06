@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Roles</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Lista de roles</ion-list-header>
+    <ion-item-sliding *ngFor="let rol of roles">
+      <ion-item>
+        <ion-label>{{rol.nombre_rol}}</ion-label>
+        <ion-note slot="end" color="primary"
+          >{{rol.id_privilegio == 1 ? 'Todos los derechos' : 'Derechos
+          reservados'}}</ion-note
+        >
+      </ion-item>
+
+      <ion-item-options side="start">
+        <ion-item-option color="secondary">Editar</ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger">Cancelar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
